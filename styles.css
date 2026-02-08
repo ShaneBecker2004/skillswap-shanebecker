@@ -1,0 +1,36 @@
+body {
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    padding-top: 80px;
+}
+
+header {
+    padding: 20px;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    padding: 5px;
+    width: 100%;
+    background-color: lightblue;
+    display: flex;
+    justify-content: left;
+    gap: 100px;
+    border-bottom: 2px solid black;  
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.footer {
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    background-color: lightblue;
+}
