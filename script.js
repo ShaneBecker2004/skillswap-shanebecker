@@ -55,3 +55,12 @@ document.querySelectorAll('.filter-buttons button').forEach(button => {
     renderSkills(filteredSkills);
   });
 });
+
+document.getElementById('calculate-btn').addEventListener('click', () => {
+  const rate = parseFloat(document.getElementById('rate-input').value);
+  const hours = parseFloat(document.getElementById('hours-input').value);
+
+  const total = calculateTotalCost(rate || 0, hours || 0);
+
+  document.getElementById('total-result').textContent = `Total: $${total}`;
+});
