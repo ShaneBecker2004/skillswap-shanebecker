@@ -1,0 +1,24 @@
+{
+  "name": "skills-swap-shanebecker-unit8",
+  "version": "1.0.0",
+  "description": "Skill Swap",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanemakotobecker/skills-swap-shanebecker-unit8.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/shanemakotobecker/skills-swap-shanebecker-unit8/issues"
+  },
+  "homepage": "https://github.com/shanemakotobecker/skills-swap-shanebecker-unit8#readme",
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}
