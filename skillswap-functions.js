@@ -13,6 +13,7 @@ function calculateTotalCost(hourlyRate, hours) {
 if (typeof module !== 'undefined') {    
     module.exports = {
         filterSkillsByCategory,
-        calculateTotalCost
+        calculateTotalCost,
+        matchSkillsToUser
 };
 }
