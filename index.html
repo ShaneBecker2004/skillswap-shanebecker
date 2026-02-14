@@ -86,8 +86,33 @@
             <p id="total-result">Total: $0</p>
             </div>
 
-    <script src="script.js"></script>
-</body>
+            <hr>
+
+    <h2>Find My Match</h2>
+
+    <div class="match-section">
+    <label>
+        Category:
+        <select id="match-category">
+        <option value="Programming">Programming</option>
+        <option value="Music">Music</option>
+        <option value="Career">Career</option>
+        </select>
+    </label>
+
+    <label>
+        Max Price:
+        <input type="number" id="match-price" min="0" step="0.01">
+    </label>
+
+    <button id="match-btn">Find Matches</button>
+
+    <div id="match-results"></div>
+    </div>
+
+        <script src="skillswap-functions.js"></script>
+        <script src="script.js"></script>
+    </body>
 
 
 <footer>This is the Skill Swap application footer.</footer>
