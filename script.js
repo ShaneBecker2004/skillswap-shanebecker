@@ -64,3 +64,38 @@ document.getElementById('calculate-btn').addEventListener('click', () => {
 
   document.getElementById('total-result').textContent = `Total: $${total}`;
 });
+
+document.getElementById('match-btn').addEventListener('click', () => {
+
+  const category = document.getElementById('match-category').value;
+  const maxPrice = parseFloat(document.getElementById('match-price').value) || 0;
+
+  const userNeeds = {
+    category,
+    maxPrice
+  };
+
+  const matchedSkills = matchSkillsToUser(userNeeds, skills);
+
+  const resultsContainer = document.getElementById('match-results');
+  resultsContainer.innerHTML = '';
+
+  if (matchedSkills.length === 0) {
+    resultsContainer.innerHTML = '<p>No matches found.</p>';
+    return;
+  }
+
+  matchedSkills.forEach(skill => {
+    const card = document.createElement('div');
+    card.classList.add('skill-card');
+
+    card.innerHTML = `
+      <h3>${skill.title}</h3>
+      <p>Category: ${skill.category}</p>
+      <p>Price: $${skill.price}</p>
+    `;
+
+    resultsContainer.appendChild(card);
+  });
+
+});

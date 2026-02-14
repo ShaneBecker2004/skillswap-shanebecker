@@ -107,3 +107,18 @@ img {
   padding: 8px;
   cursor: pointer;
 }
+
+.match-section {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.match-section input,
+.match-section select {
+  width: 100%;
+  margin: 5px 0;
+  padding: 5px;
+}
