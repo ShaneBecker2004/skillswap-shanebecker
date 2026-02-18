@@ -9,17 +9,15 @@ const cards = document.querySelectorAll(".card");
   });
 
 
-
-
-const skills = [
-  { title: 'Python Tutoring', category: 'Programming', price: 20 },
-  { title: 'Guitar Lessons', category: 'Music', price: 15 },
-  { title: 'Resume Review', category: 'Career', price: 0 },
-  { title: 'Web Development', category: 'Programming', price: 25 }
-];
-
-
-
+async function loadSkills() {
+  try {
+    const skillArray = await apiService.fetchSkills();
+    window.skills = skillsArray;
+    renderSkills(skillArray);
+  } catch (error) {
+    console.error('Failed to load skills:', error);
+  }
+}
 
 function renderSkills(skillsArray) {
   const container = document.getElementById('skills-container');
@@ -37,13 +35,47 @@ function renderSkills(skillsArray) {
       <p>Price: $${skill.price}</p>
     `;
 
+    card.addEventListener('click', () => {
+      const details = card.querySelector('.details');
+      details.classList.toggle('hidden');
+    });
+
 
     container.appendChild(card);
   });
 }
 
 
-renderSkills(skills);
+loadSkills();
+
+const addSkillForm = document.getElementById('add-skill-form');
+
+addSkillForm.addEventListener('submit', async (event) => {
+  event.preventDefault(); // prevent page reload
+
+  // Get values from form inputs
+  const title = document.getElementById('skill-title').value.trim();
+  const category = document.getElementById('skill-category').value.trim();
+  const price = parseFloat(document.getElementById('skill-price').value) || 0;
+  const description = document.getElementById('skill-description').value.trim();
+
+  // Create a new skill object
+  const newSkill = { title, category, price, description };
+
+  try {
+    // Call API to save the skill
+    await apiService.createSkill(newSkill);
+
+    // Reload skills from API to include the new skill
+    await loadSkills();
+
+    // Clear the form
+    addSkillForm.reset();
+  } catch (error) {
+    console.error('Error adding skill:', error);
+    alert('Failed to add skill. Check console for details.');
+  }
+});
 
 
 document.querySelectorAll('.filter-buttons button').forEach(button => {
@@ -51,7 +83,7 @@ document.querySelectorAll('.filter-buttons button').forEach(button => {
     const category = button.dataset.category;
 
 
-    const filteredSkills = filterSkillsByCategory(skills, category);
+    const filteredSkills = filterSkillsByCategory(window.skills, category);
     renderSkills(filteredSkills);
   });
 });
@@ -75,7 +107,7 @@ document.getElementById('match-btn').addEventListener('click', () => {
     maxPrice
   };
 
-  const matchedSkills = matchSkillsToUser(userNeeds, skills);
+  const matchedSkills = matchSkillsToUser(userNeeds, window.skills);
 
   const resultsContainer = document.getElementById('match-results');
   resultsContainer.innerHTML = '';
